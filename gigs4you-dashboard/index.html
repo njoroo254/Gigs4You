@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gigs4You KE</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <style>
+      /* Fallback shown while React loads */
+      #loading-fallback {
+        display: flex; align-items: center; justify-content: center;
+        min-height: 100vh; background: #F7F8FA;
+        font-family: 'DM Sans', system-ui, sans-serif;
+      }
+      #loading-fallback .spinner {
+        width: 32px; height: 32px; border: 3px solid #E5E7EB;
+        border-top-color: #1B6B3A; border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      /* Hide fallback once React mounts */
+      #root:not(:empty) + #loading-fallback,
+      #root:has(*) ~ #loading-fallback { display: none; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- Shown only if React fails to mount or takes too long -->
+    <div id="loading-fallback">
+      <div style="text-align:center">
+        <div class="spinner" style="margin:0 auto 16px"></div>
+        <div style="font-size:14px;color:#6B7280;font-weight:500">Loading Gigs4You...</div>
+        <div id="load-timeout" style="display:none;margin-top:16px;font-size:12px;color:#EF4444">
+          Taking too long? Please Wait.<br>
+          Or run <code style="background:#F3F4F6;padding:2px 6px;border-radius:4px">bash fix-blank-page.sh</code> then reload.
+        </div>
+      </div>
+    </div>
+    <script>
+      // Show timeout message after 5 seconds if still loading
+      setTimeout(() => {
+        const t = document.getElementById('load-timeout')
+        const r = document.getElementById('root')
+        if (t && r && !r.children.length) t.style.display = 'block'
+      }, 5000)
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

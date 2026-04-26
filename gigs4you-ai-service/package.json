@@ -1,0 +1,13 @@
+{
+  "name": "gigs4you-ai-service-mock",
+  "version": "1.0.0",
+  "description": "Mock AI service for Gigs4You platform",
+  "main": "mock-service.js",
+  "scripts": {
+    "start": "node mock-service.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}

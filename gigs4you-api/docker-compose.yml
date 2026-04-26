@@ -1,0 +1,174 @@
+version: '3.9'
+
+# Gigs4You — Production Docker Compose
+# Usage:
+#   cp .env.example .env          # fill in your real values
+#   docker compose up -d
+#   docker compose exec api npm run migration:run
+
+services:
+  # ── API (NestJS) ────────────────────────────────────────────────────
+  api:
+    build: .
+    container_name: gigs4you-api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV:        production
+      APP_PORT:        3000
+      DB_HOST:         postgres
+      DB_PORT:         5432
+      DB_NAME:         ${DB_NAME:-gigs4you}
+      DB_USER:         ${DB_USER:-gigs4you}
+      DB_PASSWORD:     ${DB_PASSWORD}
+      JWT_SECRET:          ${JWT_SECRET}
+      JWT_REFRESH_SECRET:  ${JWT_REFRESH_SECRET}
+      JWT_EXPIRES_IN:      ${JWT_EXPIRES_IN:-7d}
+      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-30d}
+      S3_ENDPOINT:     http://minio:9000
+      S3_BUCKET:       ${S3_BUCKET:-gigs4you}
+      S3_ACCESS_KEY:   ${MINIO_ROOT_USER:-minioadmin}
+      S3_SECRET_KEY:   ${MINIO_ROOT_PASSWORD:-minioadmin}
+      S3_REGION:       us-east-1
+      S3_PUBLIC_URL:   ${S3_PUBLIC_URL:-http://localhost:9000/gigs4you}
+      REDIS_URL:       redis://redis:6379
+      SENTRY_DSN:      ${SENTRY_DSN:-}
+      AT_API_KEY:      ${AT_API_KEY:-}
+      AT_USERNAME:     ${AT_USERNAME:-sandbox}
+      AT_SENDER_ID:    ${AT_SENDER_ID:-Gigs4You}
+      SMTP_HOST:       ${SMTP_HOST:-}
+      SMTP_PORT:       ${SMTP_PORT:-587}
+      SMTP_SECURE:     ${SMTP_SECURE:-false}
+      SMTP_USER:       ${SMTP_USER:-}
+      SMTP_PASS:       ${SMTP_PASS:-}
+      SMTP_FROM:       ${SMTP_FROM:-noreply@gigs4you.app}
+      FCM_SERVICE_ACCOUNT_JSON: ${FCM_SERVICE_ACCOUNT_JSON:-}
+      MPESA_ENV:       ${MPESA_ENV:-sandbox}
+      MPESA_CONSUMER_KEY:    ${MPESA_CONSUMER_KEY:-}
+      MPESA_CONSUMER_SECRET: ${MPESA_CONSUMER_SECRET:-}
+      MPESA_PAYBILL:   ${MPESA_PAYBILL:-174379}
+      MPESA_PASSKEY:   ${MPESA_PASSKEY:-}
+      STRIPE_SECRET_KEY:     ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      SEED_SECRET:     ${SEED_SECRET:-gigs4you-seed-2024}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [gigs4you]
+    volumes:
+      - api_logs:/app/logs
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # ── AI Service (FastAPI) ───────────────────────────────────────────
+  ai-service:
+    build: ../gigs4you-ai-service
+    container_name: gigs4you-ai-service
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+      DB_HOST:           postgres
+      DB_PORT:           5432
+      DB_NAME:           ${DB_NAME:-gigs4you}
+      DB_USER:           ${DB_USER:-gigs4you}
+      DB_PASSWORD:       ${DB_PASSWORD}
+      REDIS_HOST:        redis
+      REDIS_PORT:        6379
+      NEST_API_URL:      http://api:3000/api/v1
+      JWT_SECRET:        ${JWT_SECRET}
+      PORT:              8001
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks: [gigs4you]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8001/health',timeout=5).status==200 else 1)"]
+      interval: 30s
+      timeout: 15s
+      retries: 3
+      start_period: 20s
+
+  # ── PostgreSQL ─────────────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: gigs4you-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       ${DB_NAME:-gigs4you}
+      POSTGRES_USER:     ${DB_USER:-gigs4you}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGDATA:            /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks: [gigs4you]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-gigs4you} -d ${DB_NAME:-gigs4you}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Redis ──────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: gigs4you-redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD:-}
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      --save 60 1
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks: [gigs4you]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── MinIO (S3-compatible object storage) ─────────────────────────
+  minio:
+    image: minio/minio:latest
+    container_name: gigs4you-minio
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER:     ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    networks: [gigs4you]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
+  api_logs:
+
+networks:
+  gigs4you:
+    driver: bridge

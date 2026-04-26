@@ -1,0 +1,2 @@
+- Initialize PM backlog: 1) Dashboard MVP with Card patterns, 2) Wallet admin reversal endpoint UI, 3) AI hints on more pages, 4) Undo/redo framework, 5) Security and access audits, 6) Mobile parity improvements.
+- For each item: describe the task, acceptance criteria, and success metrics.

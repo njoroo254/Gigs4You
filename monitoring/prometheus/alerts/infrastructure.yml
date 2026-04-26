@@ -1,0 +1,134 @@
+groups:
+  # ── PostgreSQL ───────────────────────────────────────────────────────────────
+  - name: database
+    rules:
+      - alert: PostgresDown
+        expr: up{job="postgres"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team:     ops
+        annotations:
+          summary:     "PostgreSQL is unreachable"
+          description: "The postgres_exporter cannot reach the database. API requests will fail immediately."
+
+      - alert: PostgresHighConnections
+        # Using > 80% of max_connections (default 100; set DB_POOL_SIZE to match)
+        expr: |
+          pg_stat_activity_count
+          /
+          pg_settings_max_connections
+          > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          team:     ops
+        annotations:
+          summary:     "PostgreSQL connection usage at {{ $value | humanizePercentage }}"
+          description: "High connection utilisation. Connections may be leaking or pool size needs increasing."
+
+      - alert: PostgresLongRunningQuery
+        # Any query running > 30 s (matches our statement_timeout)
+        expr: |
+          max(
+            pg_stat_activity_seconds{state="active"}
+          ) > 30
+        for: 0m
+        labels:
+          severity: warning
+          team:     dev
+        annotations:
+          summary:     "Long-running PostgreSQL query detected ({{ $value }}s)"
+          description: "A query has been running for more than 30 seconds. It will be killed by statement_timeout — check for missing indexes or table locks."
+
+      - alert: PostgresReplicationLag
+        # Replica lag > 30 s (relevant if read replicas are added)
+        expr: |
+          pg_replication_lag > 30
+        for: 2m
+        labels:
+          severity: warning
+          team:     ops
+        annotations:
+          summary:     "PostgreSQL replication lag is {{ $value }}s"
+          description: "Read replicas are falling behind the primary. Writes may be visible on primary but not yet on replicas."
+
+  # ── Redis ────────────────────────────────────────────────────────────────────
+  - name: redis
+    rules:
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team:     ops
+        annotations:
+          summary:     "Redis is unreachable"
+          description: "Rate limiting, session caching, and M-Pesa staging tokens will fall back to degraded mode."
+
+      - alert: RedisHighMemory
+        # Used memory > 80% of maxmemory
+        expr: |
+          redis_memory_used_bytes / redis_memory_max_bytes > 0.8
+        for: 5m
+        labels:
+          severity: warning
+          team:     ops
+        annotations:
+          summary:     "Redis memory at {{ $value | humanizePercentage }}"
+          description: "Redis is approaching its memory limit. Keys may be evicted, which could cause rate limit bypass or lost staging tokens."
+
+      - alert: RedisEvictedKeys
+        # Any eviction in the last 5 minutes
+        expr: increase(redis_evicted_keys_total[5m]) > 0
+        for: 0m
+        labels:
+          severity: warning
+          team:     ops
+        annotations:
+          summary:     "Redis evicted {{ $value }} keys in the last 5 minutes"
+          description: "Key eviction means some rate-limit counters or M-Pesa staging tokens were lost. Increase Redis maxmemory or reduce TTLs."
+
+  # ── Host / Container Resources ───────────────────────────────────────────────
+  - name: host
+    rules:
+      - alert: HighMemoryUsage
+        # Process RSS > 512 MB (NestJS typical in production)
+        expr: |
+          process_resident_memory_bytes{job="gigs4you-api"} > 512 * 1024 * 1024
+        for: 5m
+        labels:
+          severity: warning
+          team:     ops
+        annotations:
+          summary:     "API process memory is {{ $value | humanize1024 }}B"
+          description: "The NestJS process is using more than 512 MB of RAM. Check for memory leaks."
+
+  # ── Data Retention ───────────────────────────────────────────────────────────
+  - name: data_retention
+    rules:
+      - alert: RetentionCronNotRunning
+        # If no rows were deleted in the last 25 hours the cron may have silently stopped
+        expr: |
+          increase(data_retention_gps_deleted_total[25h]) == 0
+          and
+          increase(data_retention_chat_deleted_total[25h]) == 0
+        for: 0m
+        labels:
+          severity: warning
+          team:     ops
+        annotations:
+          summary:     "Data retention cron has not run in 25 hours"
+          description: "GPS and chat retention jobs both show zero deletions. The cron scheduler may have stopped. Check DataRetentionService logs."
+
+      - alert: HighEventLoopLag
+        # Node.js event loop lag > 100 ms — indicates the main thread is blocked
+        expr: |
+          nodejs_eventloop_lag_seconds{job="gigs4you-api"} > 0.1
+        for: 2m
+        labels:
+          severity: warning
+          team:     dev
+        annotations:
+          summary:     "Node.js event loop lag is {{ $value | humanizeDuration }}"
+          description: "The event loop is blocked. Long synchronous operations (crypto, JSON serialisation) or CPU-intensive code may be the cause."

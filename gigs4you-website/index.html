@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gigs4You — Empowering Africa's Workforce</title>
+  <meta name="description" content="Deploy agents, assign tasks, track performance in real-time, and pay your field team via M-Pesa — all from one powerful platform." />
+  <meta property="og:title" content="Gigs4You — Africa's Field Workforce Platform" />
+  <meta property="og:description" content="Africa's premier skills & workforce platform. GPS tracking, task management, skills marketplace, and M-Pesa payments in one platform." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ── NAVBAR ─────────────────────────────────────────────────── -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </span>
+        <span class="logo-text">Gigs<span>4</span>You</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How it works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="http://localhost:3001" class="btn btn-ghost" target="_blank">Sign in</a>
+        <a href="http://localhost:3001" class="btn btn-primary">Start free trial</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="hero-circle hero-circle-1"></div>
+      <div class="hero-circle hero-circle-2"></div>
+      <div class="hero-grid"></div>
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-content" data-animate="fade-up">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Now live in Kenya — M-Pesa payments included
+        </div>
+        <h1 class="hero-title">
+          Africa's Premier<br>
+          Skills & Workforce<br>Platform
+        </h1>
+        <p class="hero-sub">
+          Deploy agents, assign tasks, track performance in real-time,<br>
+          and pay your entire team via M-Pesa — all from one platform.
+        </p>
+        <div class="hero-actions">
+          <a href="#pricing" class="btn btn-primary btn-lg">
+            Start free — 14 days
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#how-it-works" class="btn btn-outline-white btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            See how it works
+          </a>
+        </div>
+        <div class="hero-trust">
+          <span>Trusted by field teams across Kenya</span>
+          <div class="trust-avatars">
+            <div class="ta ta-1">JK</div>
+            <div class="ta ta-2">AM</div>
+            <div class="ta ta-3">PO</div>
+            <div class="ta ta-4">FK</div>
+            <div class="ta ta-5">+</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual" data-animate="fade-left">
+        <div class="dashboard-mockup">
+          <div class="mockup-bar">
+            <div class="mockup-dots"><span></span><span></span><span></span></div>
+            <div class="mockup-url">dashboard.gigs4you.co.ke</div>
+          </div>
+          <div class="mockup-body">
+            <!-- Stat cards -->
+            <div class="mock-stats">
+              <div class="mock-stat green">
+                <div class="ms-icon">👥</div>
+                <div>
+                  <div class="ms-val">247</div>
+                  <div class="ms-label">Active Agents</div>
+                </div>
+              </div>
+              <div class="mock-stat amber">
+                <div class="ms-icon">✅</div>
+                <div>
+                  <div class="ms-val">1,892</div>
+                  <div class="ms-label">Tasks Done</div>
+                </div>
+              </div>
+              <div class="mock-stat blue">
+                <div class="ms-icon">💰</div>
+                <div>
+                  <div class="ms-val">KES 4.2M</div>
+                  <div class="ms-label">Paid Out</div>
+                </div>
+              </div>
+            </div>
+            <!-- Map preview -->
+            <div class="mock-map">
+              <div class="map-label">Live Agent Map — Nairobi</div>
+              <div class="map-area">
+                <div class="map-pin p1 pulse"></div>
+                <div class="map-pin p2 pulse"></div>
+                <div class="map-pin p3"></div>
+                <div class="map-pin p4 pulse"></div>
+                <div class="map-pin p5"></div>
+                <div class="map-line ml1"></div>
+                <div class="map-line ml2"></div>
+              </div>
+            </div>
+            <!-- Agent list -->
+            <div class="mock-agents">
+              <div class="mock-agent">
+                <div class="agent-av av-green">BK</div>
+                <div class="agent-info">
+                  <div class="agent-name">Brian Kipchoge</div>
+                  <div class="agent-status online">● In field</div>
+                </div>
+                <div class="agent-xp">Lv 7</div>
+              </div>
+              <div class="mock-agent">
+                <div class="agent-av av-blue">AM</div>
+                <div class="agent-info">
+                  <div class="agent-name">Alice Mwangi</div>
+                  <div class="agent-status online">● In field</div>
+                </div>
+                <div class="agent-xp">Lv 5</div>
+              </div>
+              <div class="mock-agent">
+                <div class="agent-av av-amber">JO</div>
+                <div class="agent-info">
+                  <div class="agent-name">James Ochieng</div>
+                  <div class="agent-status offline">● Offline</div>
+                </div>
+                <div class="agent-xp">Lv 9</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Floating cards -->
+        <div class="float-card fc-1" data-animate="fade-in" data-delay="400">
+          <span class="fc-icon">📍</span>
+          <div>
+            <div class="fc-val">Real-time GPS</div>
+            <div class="fc-sub">Live locations, always</div>
+          </div>
+        </div>
+        <div class="float-card fc-2" data-animate="fade-in" data-delay="600">
+          <span class="fc-icon">💸</span>
+          <div>
+            <div class="fc-val">M-Pesa in 1 click</div>
+            <div class="fc-sub">Bulk pay agents instantly</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats strip -->
+    <div class="stats-strip" data-animate="fade-up" data-delay="300">
+      <div class="container stats-inner">
+        <div class="stat-item">
+          <div class="stat-num">10,000+</div>
+          <div class="stat-lbl">Field agents managed</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-lbl">Companies onboarded</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">KES 200M+</div>
+          <div class="stat-lbl">Paid to agents via M-Pesa</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num">99.9%</div>
+          <div class="stat-lbl">Platform uptime</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ───────────────────────────────────────────────── -->
+  <section class="features section" id="features">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="section-tag">Platform Features</div>
+        <h2 class="section-title">Everything your field team needs,<br>in one place</h2>
+        <p class="section-sub">Built specifically for African markets — M-Pesa native, offline-capable, and designed for teams from 2 to 2,000 agents.</p>
+      </div>
+
+      <div class="features-grid">
+
+        <div class="feature-card fc-large" data-animate="fade-up" data-delay="0">
+          <div class="feature-icon icon-green">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <h3>Live GPS Tracking</h3>
+          <p>See exactly where every agent is on a real-time map. Monitor check-ins, check-outs, and route coverage from your dashboard — anywhere.</p>
+          <ul class="feature-bullets">
+            <li>Real-time location updates</li>
+            <li>Geofenced check-in / check-out</li>
+            <li>Attendance heatmaps by region</li>
+          </ul>
+          <div class="feature-visual fv-map">
+            <div class="fv-pin fp1 pulse"></div>
+            <div class="fv-pin fp2 pulse"></div>
+            <div class="fv-pin fp3"></div>
+            <div class="fv-route"></div>
+          </div>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up" data-delay="100">
+          <div class="feature-icon icon-blue">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <h3>Smart Task Management</h3>
+          <p>Create tasks from HQ, assign to agents by skill or location, and track completion with photo evidence.</p>
+          <div class="mini-tasks">
+            <div class="mini-task mt-done"><span class="mt-dot done"></span>Route check — Westlands <span class="mt-badge green">Done</span></div>
+            <div class="mini-task mt-active"><span class="mt-dot active"></span>Stock audit — CBD <span class="mt-badge amber">Active</span></div>
+            <div class="mini-task"><span class="mt-dot pending"></span>Delivery — Karen <span class="mt-badge gray">Pending</span></div>
+          </div>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up" data-delay="150">
+          <div class="feature-icon icon-amber">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>Jobs Marketplace</h3>
+          <p>Post short-term jobs and instantly match them to skilled, available workers in your area — with built-in application management.</p>
+          <div class="mini-jobs">
+            <div class="mini-job">
+              <div class="mj-cat sales">Sales</div>
+              <div class="mj-title">Route Sales Rep — Nairobi CBD</div>
+              <div class="mj-salary">KES 1,200/day</div>
+            </div>
+            <div class="mini-job">
+              <div class="mj-cat tech">Technician</div>
+              <div class="mj-title">Solar Installer — Kisumu</div>
+              <div class="mj-salary">KES 2,500/day</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up" data-delay="200">
+          <div class="feature-icon icon-green">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          </div>
+          <h3>M-Pesa Payments</h3>
+          <p>Pay hundreds of agents in one bulk action via Safaricom Daraja B2C. No bank account needed — workers receive funds directly to M-Pesa.</p>
+          <div class="mpesa-preview">
+            <div class="mpesa-logo">M-PESA</div>
+            <div class="mpesa-detail">
+              <span class="mpesa-agents">248 agents</span>
+              <span class="mpesa-arrow">→</span>
+              <span class="mpesa-amount">KES 372,000</span>
+            </div>
+            <div class="mpesa-btn">Send bulk payment</div>
+          </div>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up" data-delay="250">
+          <div class="feature-icon icon-purple">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>Real-time Chat</h3>
+          <p>Managers and agents stay connected with persistent, in-app messaging. Push notifications keep everyone in the loop, even when offline.</p>
+          <div class="mini-chat">
+            <div class="chat-msg manager">Hi Brian, head to Westlands depot</div>
+            <div class="chat-msg agent">On my way — ETA 15 min ✓✓</div>
+            <div class="chat-msg manager">Great, pick up the invoice too</div>
+          </div>
+        </div>
+
+        <div class="feature-card fc-large" data-animate="fade-up" data-delay="300">
+          <div class="feature-icon icon-blue">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3>Analytics & Reports</h3>
+          <p>Get deep insights into team performance, task completion rates, regional coverage, and payment history. Export PDF reports in one click.</p>
+          <ul class="feature-bullets">
+            <li>Agent leaderboard with XP & levels</li>
+            <li>Task completion funnels</li>
+            <li>Financial summaries with VAT invoices</li>
+            <li>Attendance & GPS heatmaps</li>
+          </ul>
+          <div class="mini-chart">
+            <div class="chart-bars">
+              <div class="cb" style="height:40%"><span>Mon</span></div>
+              <div class="cb" style="height:65%"><span>Tue</span></div>
+              <div class="cb" style="height:55%"><span>Wed</span></div>
+              <div class="cb" style="height:80%"><span>Thu</span></div>
+              <div class="cb active" style="height:90%"><span>Fri</span></div>
+              <div class="cb" style="height:45%"><span>Sat</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ───────────────────────────────────────────── -->
+  <section class="how-it-works section section-alt" id="how-it-works">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="section-tag">How it works</div>
+        <h2 class="section-title">Up and running in minutes</h2>
+        <p class="section-sub">No IT setup. No complex onboarding. Invite your team and start managing your field operations today.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step" data-animate="fade-up" data-delay="0">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <div class="step-icon">🏢</div>
+            <h3>Create your organisation</h3>
+            <p>Register your company, set your industry, and configure your subscription plan. Takes under 2 minutes.</p>
+          </div>
+        </div>
+        <div class="step-connector">
+          <svg width="40" height="2"><line x1="0" y1="1" x2="40" y2="1" stroke="#E5E7EB" stroke-width="2" stroke-dasharray="6,4"/></svg>
+        </div>
+        <div class="step" data-animate="fade-up" data-delay="150">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <div class="step-icon">👥</div>
+            <h3>Invite your agents</h3>
+            <p>Send invites via phone number. Agents download the mobile app, complete their profile, and they're ready to go.</p>
+          </div>
+        </div>
+        <div class="step-connector">
+          <svg width="40" height="2"><line x1="0" y1="1" x2="40" y2="1" stroke="#E5E7EB" stroke-width="2" stroke-dasharray="6,4"/></svg>
+        </div>
+        <div class="step" data-animate="fade-up" data-delay="300">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <div class="step-icon">📋</div>
+            <h3>Assign tasks & track</h3>
+            <p>Create tasks from the dashboard. Assign by skill, region, or agent level. Watch progress update live as agents work.</p>
+          </div>
+        </div>
+        <div class="step-connector">
+          <svg width="40" height="2"><line x1="0" y1="1" x2="40" y2="1" stroke="#E5E7EB" stroke-width="2" stroke-dasharray="6,4"/></svg>
+        </div>
+        <div class="step" data-animate="fade-up" data-delay="450">
+          <div class="step-num">04</div>
+          <div class="step-content">
+            <div class="step-icon">💰</div>
+            <h3>Pay your team</h3>
+            <p>Review performance, approve payroll, and bulk-send M-Pesa payments to every agent in your organisation — instantly.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ROLES ─────────────────────────────────────────────────── -->
+  <section class="roles section" id="about">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="section-tag">Built for every role</div>
+        <h2 class="section-title">One platform, every stakeholder</h2>
+      </div>
+      <div class="roles-grid">
+        <div class="role-card" data-animate="fade-up" data-delay="0">
+          <div class="role-icon">🏢</div>
+          <h3>Employers & Managers</h3>
+          <ul>
+            <li>Post jobs and manage applications</li>
+            <li>Create and assign field tasks</li>
+            <li>Monitor agents via live map</li>
+            <li>Approve payments and view reports</li>
+          </ul>
+        </div>
+        <div class="role-card" data-animate="fade-up" data-delay="100">
+          <div class="role-icon">🧑‍💼</div>
+          <h3>Field Agents</h3>
+          <ul>
+            <li>Receive task assignments instantly</li>
+            <li>GPS check-in at client sites</li>
+            <li>Upload task completion photos</li>
+            <li>Track earnings and XP level</li>
+          </ul>
+        </div>
+        <div class="role-card" data-animate="fade-up" data-delay="200">
+          <div class="role-icon">🔧</div>
+          <h3>Supervisors</h3>
+          <ul>
+            <li>Oversee agent teams by region</li>
+            <li>Approve or reassign tasks</li>
+            <li>Access attendance reports</li>
+            <li>Communicate via in-app chat</li>
+          </ul>
+        </div>
+        <div class="role-card" data-animate="fade-up" data-delay="300">
+          <div class="role-icon">🛠️</div>
+          <h3>Skilled Workers</h3>
+          <ul>
+            <li>Browse and apply for gigs</li>
+            <li>Showcase skills and reviews</li>
+            <li>Set availability and daily rate</li>
+            <li>Receive M-Pesa on completion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MOBILE APP ─────────────────────────────────────────────── -->
+  <section class="mobile-section section section-dark">
+    <div class="container mobile-inner">
+      <div class="mobile-content" data-animate="fade-right">
+        <div class="section-tag tag-light">Mobile App</div>
+        <h2 class="section-title light">Your agents carry the<br>office in their pocket</h2>
+        <p class="section-sub light">The Gigs4You mobile app (Android & iOS) gives field agents everything they need — offline-capable, lightweight, and built for low-bandwidth African networks.</p>
+        <ul class="mobile-features">
+          <li>
+            <span class="mf-icon">📍</span>
+            <div>
+              <strong>GPS check-in / check-out</strong>
+              <span>One tap to mark arrival and departure</span>
+            </div>
+          </li>
+          <li>
+            <span class="mf-icon">📸</span>
+            <div>
+              <strong>Photo task completion</strong>
+              <span>Submit evidence from the field</span>
+            </div>
+          </li>
+          <li>
+            <span class="mf-icon">💬</span>
+            <div>
+              <strong>Real-time chat</strong>
+              <span>Instant messages with push notifications</span>
+            </div>
+          </li>
+          <li>
+            <span class="mf-icon">🏆</span>
+            <div>
+              <strong>XP, levels & leaderboards</strong>
+              <span>Gamified performance keeps agents motivated</span>
+            </div>
+          </li>
+        </ul>
+        <div class="app-badges">
+          <div class="app-badge">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.42.07 2.38.7 3.23.73.97-.12 1.89-.79 3.15-.83 1.34.05 2.44.49 3.27 1.32-2.84 1.65-2.37 5.36.37 6.64-.43 1.1-.99 2.19-2.02 3.02zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+            App Store
+          </div>
+          <div class="app-badge app-badge-android">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18c0 .55.45 1 1 1h1v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h2v3.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5V19h1c.55 0 1-.45 1-1V8H6v10zm-2.5-1C2.67 17 2 17.67 2 18.5v7c0 .83.67 1.5 1.5 1.5S5 26.33 5 25.5v-7C5 17.67 4.33 17 3.5 17zm17 0c-.83 0-1.5.67-1.5 1.5v7c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-7c0-.83-.67-1.5-1.5-1.5zm-4.97-14l1.76-1.76c.28-.28.28-.73 0-1.01-.28-.28-.73-.28-1.01 0l-1.96 1.96C13.48 2.07 12.76 2 12 2s-1.48.07-2.32.19L7.72.23c-.28-.28-.73-.28-1.01 0-.28.28-.28.73 0 1.01L8.47 3C6.47 4.06 5 6.17 5 8.5V9h14v-.5c0-2.33-1.47-4.44-3.47-5.5z"/></svg>
+            Google Play
+          </div>
+        </div>
+      </div>
+      <div class="mobile-visual" data-animate="fade-left">
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="phone-status-bar">
+              <span>9:41</span>
+              <span>📶 🔋</span>
+            </div>
+            <div class="phone-header">
+              <div class="phone-avatar">BK</div>
+              <div>
+                <div class="phone-name">Brian Kipchoge</div>
+                <div class="phone-role">Field Agent · Lv 7</div>
+              </div>
+              <div class="phone-xp">🔥 14</div>
+            </div>
+            <div class="phone-checkin checked">
+              <div class="ci-icon">📍</div>
+              <div>
+                <div class="ci-label">Checked in</div>
+                <div class="ci-time">Westlands · 8:02 AM</div>
+              </div>
+              <div class="ci-badge">✓</div>
+            </div>
+            <div class="phone-section-title">My Tasks Today</div>
+            <div class="phone-task done">
+              <span class="pt-icon">✅</span>
+              <div class="pt-info">
+                <div class="pt-title">Stock audit — Sarit Centre</div>
+                <div class="pt-meta">Completed · 9:15 AM</div>
+              </div>
+            </div>
+            <div class="phone-task active">
+              <span class="pt-icon">🔄</span>
+              <div class="pt-info">
+                <div class="pt-title">Merchandising — Nakumatt</div>
+                <div class="pt-meta">In progress</div>
+              </div>
+            </div>
+            <div class="phone-task">
+              <span class="pt-icon">⏳</span>
+              <div class="pt-info">
+                <div class="pt-title">Survey — Junction Mall</div>
+                <div class="pt-meta">Due 3:00 PM</div>
+              </div>
+            </div>
+            <div class="phone-nav">
+              <div class="pn-item active">🏠<span>Home</span></div>
+              <div class="pn-item">📋<span>Tasks</span></div>
+              <div class="pn-item">
+                <span class="pn-badge">2</span>💬<span>Chat</span>
+              </div>
+              <div class="pn-item">👤<span>Profile</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ────────────────────────────────────────────────── -->
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="section-tag">Pricing</div>
+        <h2 class="section-title">Simple, transparent pricing</h2>
+        <p class="section-sub">Start free for 14 days. No credit card required. All plans include M-Pesa payments, GPS tracking, and the mobile app.</p>
+      </div>
+      <div class="pricing-toggle" data-animate="fade-up">
+        <span class="pt-label active" id="ptMonthly">Monthly</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="billingToggle" />
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="pt-label" id="ptAnnual">Annual <span class="save-badge">Save 20%</span></span>
+      </div>
+
+      <div class="pricing-grid">
+
+        <div class="pricing-card" data-animate="fade-up" data-delay="0">
+          <div class="plan-name">Free Trial</div>
+          <div class="plan-price">
+            <span class="price-currency">KES</span>
+            <span class="price-amount" data-monthly="0" data-annual="0">0</span>
+            <span class="price-period">/month</span>
+          </div>
+          <div class="plan-desc">Perfect for evaluating the platform with a small team.</div>
+          <ul class="plan-features">
+            <li class="yes">Up to 2 agents</li>
+            <li class="yes">5 active jobs</li>
+            <li class="yes">GPS tracking</li>
+            <li class="yes">Basic tasks</li>
+            <li class="yes">In-app chat</li>
+            <li class="no">Bulk M-Pesa payments</li>
+            <li class="no">Advanced reports</li>
+            <li class="no">KYC verification</li>
+          </ul>
+          <a href="#" class="plan-btn plan-btn-outline">Start free trial</a>
+        </div>
+
+        <div class="pricing-card" data-animate="fade-up" data-delay="100">
+          <div class="plan-name">Starter</div>
+          <div class="plan-price">
+            <span class="price-currency">KES</span>
+            <span class="price-amount" data-monthly="2999" data-annual="2399">2,999</span>
+            <span class="price-period">/month</span>
+          </div>
+          <div class="plan-desc">For small FMCG, logistics, or sales teams just scaling up.</div>
+          <ul class="plan-features">
+            <li class="yes">Up to 10 agents</li>
+            <li class="yes">50 active jobs</li>
+            <li class="yes">GPS tracking + map</li>
+            <li class="yes">Unlimited tasks</li>
+            <li class="yes">In-app chat</li>
+            <li class="yes">M-Pesa bulk pay</li>
+            <li class="yes">Basic reports</li>
+            <li class="no">KYC verification</li>
+          </ul>
+          <a href="#" class="plan-btn plan-btn-outline">Get started</a>
+        </div>
+
+        <div class="pricing-card recommended" data-animate="fade-up" data-delay="200">
+          <div class="recommended-badge">Most popular</div>
+          <div class="plan-name">Growth</div>
+          <div class="plan-price">
+            <span class="price-currency">KES</span>
+            <span class="price-amount" data-monthly="7999" data-annual="6399">7,999</span>
+            <span class="price-period">/month</span>
+          </div>
+          <div class="plan-desc">For growing field operations across multiple regions.</div>
+          <ul class="plan-features">
+            <li class="yes">Up to 50 agents</li>
+            <li class="yes">500 active jobs</li>
+            <li class="yes">GPS tracking + heatmap</li>
+            <li class="yes">Unlimited tasks</li>
+            <li class="yes">In-app chat</li>
+            <li class="yes">M-Pesa bulk pay</li>
+            <li class="yes">Advanced reports + PDF</li>
+            <li class="yes">KYC verification</li>
+          </ul>
+          <a href="#" class="plan-btn plan-btn-primary">Get started</a>
+        </div>
+
+        <div class="pricing-card" data-animate="fade-up" data-delay="300">
+          <div class="plan-name">Scale</div>
+          <div class="plan-price">
+            <span class="price-currency">KES</span>
+            <span class="price-amount" data-monthly="19999" data-annual="15999">19,999</span>
+            <span class="price-period">/month</span>
+          </div>
+          <div class="plan-desc">For large organisations managing hundreds of agents nationwide.</div>
+          <ul class="plan-features">
+            <li class="yes">Up to 200 agents</li>
+            <li class="yes">5,000 active jobs</li>
+            <li class="yes">Full GPS suite</li>
+            <li class="yes">Unlimited tasks</li>
+            <li class="yes">In-app chat</li>
+            <li class="yes">M-Pesa bulk pay</li>
+            <li class="yes">Full analytics suite</li>
+            <li class="yes">KYC + AI verification</li>
+          </ul>
+          <a href="#" class="plan-btn plan-btn-outline">Get started</a>
+        </div>
+
+      </div>
+
+      <div class="enterprise-banner" data-animate="fade-up">
+        <div class="eb-content">
+          <div class="eb-icon">🏛️</div>
+          <div>
+            <h3>Enterprise</h3>
+            <p>Unlimited agents · Custom SLA · Dedicated account manager · On-premise option · Custom integrations</p>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-primary">Talk to sales</a>
+      </div>
+
+      <div class="pricing-note" data-animate="fade-up">
+        All prices exclude VAT (16%). M-Pesa transaction fees apply separately. Annual plans are billed upfront.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ───────────────────────────────────────────── -->
+  <section class="testimonials section section-alt">
+    <div class="container">
+      <div class="section-header" data-animate="fade-up">
+        <div class="section-tag">Testimonials</div>
+        <h2 class="section-title">Trusted by field teams across Kenya</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card" data-animate="fade-up" data-delay="0">
+          <div class="stars">★★★★★</div>
+          <blockquote>"We went from WhatsApp groups to a proper system overnight. Now I can see all 40 agents on a map and assign tasks without calling each one individually."</blockquote>
+          <div class="testimonial-author">
+            <div class="ta-avatar ta-green">MN</div>
+            <div>
+              <div class="ta-name">Michael Njoroge</div>
+              <div class="ta-role">Operations Manager, FMCG Distributor · Nairobi</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-animate="fade-up" data-delay="150">
+          <div class="stars">★★★★★</div>
+          <blockquote>"The M-Pesa bulk pay alone saves us half a day every Friday. We used to process 80 payments manually. Now it's one button and everyone is paid in minutes."</blockquote>
+          <div class="testimonial-author">
+            <div class="ta-avatar ta-blue">AW</div>
+            <div>
+              <div class="ta-name">Amina Wanjiku</div>
+              <div class="ta-role">HR Director, Solar Energy Company · Kisumu</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card" data-animate="fade-up" data-delay="300">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Our agents love the XP and level system. It created healthy competition and our task completion rate jumped from 67% to 94% in the first month."</blockquote>
+          <div class="testimonial-author">
+            <div class="ta-avatar ta-amber">PK</div>
+            <div>
+              <div class="ta-name">Peter Kariuki</div>
+              <div class="ta-role">Founder, Field Research Firm · Mombasa</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────── -->
+  <section class="faq section">
+    <div class="container faq-inner">
+      <div class="section-header" data-animate="fade-up">
+        <div class="section-tag">FAQ</div>
+        <h2 class="section-title">Frequently asked questions</h2>
+      </div>
+      <div class="faq-list" data-animate="fade-up">
+        <div class="faq-item">
+          <button class="faq-q">Do agents need smartphones?<span class="faq-arrow">▾</span></button>
+          <div class="faq-a">Yes — agents need an Android or iOS smartphone to use the mobile app. The app is lightweight and works well on entry-level devices with limited data.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How does M-Pesa integration work?<span class="faq-arrow">▾</span></button>
+          <div class="faq-a">We integrate with Safaricom Daraja API (B2C). You load funds into your organisation wallet via M-Pesa STK Push or Paybill, then distribute to agents in bulk. Agents receive funds directly to their M-Pesa numbers.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I upgrade or downgrade my plan?<span class="faq-arrow">▾</span></button>
+          <div class="faq-a">Yes — you can change your plan at any time from the Billing page in your dashboard. Upgrades take effect immediately. Downgrades apply at the next billing cycle.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is the platform available outside Kenya?<span class="faq-arrow">▾</span></button>
+          <div class="faq-a">The platform works globally, but M-Pesa payments are currently Kenya-only. We plan to expand to other African M-Pesa markets (Tanzania, Uganda, Rwanda) in Q3 2025.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What happens to my data if I cancel?<span class="faq-arrow">▾</span></button>
+          <div class="faq-a">Your data is retained for 90 days after cancellation. You can request a full export of all your data (tasks, agents, transactions) at any time during this period.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ────────────────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="container cta-inner" data-animate="fade-up">
+      <div class="cta-glow"></div>
+      <h2>Ready to manage your field team like a pro?</h2>
+      <p>Join hundreds of Kenyan companies already using Gigs4You. Start your 14-day free trial — no credit card, no setup fees.</p>
+      <div class="cta-actions">
+        <a href="#pricing" class="btn btn-primary btn-xl">Start free trial</a>
+        <a href="#contact" class="btn btn-outline-white btn-xl">Talk to us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ────────────────────────────────────────────────── -->
+  <section class="contact section section-alt" id="contact">
+    <div class="container contact-inner">
+      <div class="contact-content" data-animate="fade-right">
+        <div class="section-tag">Get in touch</div>
+        <h2 class="section-title">Let's talk about your team</h2>
+        <p>Have questions about the platform, pricing, or a custom enterprise deal? Our team is based in Nairobi and responds within 24 hours.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <span class="ci-icon2">📧</span>
+            <a href="mailto:hello@gigs4you.co.ke">hello@gigs4you.co.ke</a>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon2">📞</span>
+            <a href="tel:+254700000000">+254 700 000 000</a>
+          </div>
+          <div class="contact-item">
+            <span class="ci-icon2">📍</span>
+            <span>Nairobi, Kenya</span>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" data-animate="fade-left" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full name</label>
+            <input type="text" name="name" placeholder="Michael Njoroge" required />
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" name="phone" placeholder="0712 345 678" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Company name</label>
+          <input type="text" name="company" placeholder="Bidco Africa Ltd" />
+        </div>
+        <div class="form-group">
+          <label>How many agents do you manage?</label>
+          <select name="agents">
+            <option>1–10 agents</option>
+            <option>11–50 agents</option>
+            <option>51–200 agents</option>
+            <option>200+ agents</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" rows="4" placeholder="Tell us about your field operations..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">
+          Send message
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ─────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo logo-light">
+          <span class="logo-icon">G4</span>
+          <span class="logo-text">Gigs<span>4</span>You</span>
+        </a>
+        <p>The premier skills & workforce platform for Africa. GPS tracking, task management, and M-Pesa payments in one platform.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#">Mobile app</a></li>
+            <li><a href="#">API docs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Use cases</h4>
+          <ul>
+            <li><a href="#">FMCG & Distribution</a></li>
+            <li><a href="#">Solar & Energy</a></li>
+            <li><a href="#">Microfinance</a></li>
+            <li><a href="#">Research & Surveys</a></li>
+            <li><a href="#">Logistics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy policy</a></li>
+            <li><a href="#">Terms of service</a></li>
+            <li><a href="#">Data processing</a></li>
+            <li><a href="#">Cookie policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© 2025 Gigs4You. All rights reserved. Built in 🇰🇪 Kenya.</span>
+        <span>Powered by Safaricom M-Pesa · Firebase · Google Maps</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+    <div class="modal-content login-modal-content">
+      <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+
+      <div class="login-modal-logo">
+        <div class="login-logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </div>
+        <span>Gigs4You</span>
+      </div>
+
+      <h2 id="loginModalTitle" class="login-modal-title">Sign in to your account</h2>
+      <p class="login-modal-sub">Enter your credentials to access the dashboard</p>
+
+      <form id="loginForm" novalidate>
+        <div class="login-field">
+          <label for="identifier">Phone or Email</label>
+          <input type="text" id="identifier" name="identifier" placeholder="0712 345 678 or email@company.com" autocomplete="username">
+        </div>
+        <div class="login-field">
+          <label for="password">Password</label>
+          <div class="login-password-wrap">
+            <input type="password" id="password" name="password" placeholder="Your password" autocomplete="current-password">
+            <button type="button" class="toggle-pw" id="togglePw" aria-label="Show password">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+        <p id="loginMessage" class="login-message" role="alert"></p>
+        <button type="submit" class="login-submit-btn" id="loginSubmit">
+          <span id="loginBtnText">Sign In</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <div class="login-modal-footer">
+        <a href="http://localhost:3001/forgot-password" id="forgotPassword">Forgot password?</a>
+        <span class="login-divider">·</span>
+        <a href="http://localhost:3001/register">Create account</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body>
+</html>

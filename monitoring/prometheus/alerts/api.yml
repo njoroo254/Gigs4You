@@ -1,0 +1,123 @@
+groups:
+  # ── API Availability ─────────────────────────────────────────────────────────
+  - name: api_availability
+    rules:
+      - alert: ApiDown
+        expr: up{job="gigs4you-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team:     ops
+        annotations:
+          summary:     "Gigs4You API is down"
+          description: "The NestJS API has been unreachable for more than 1 minute. Check container logs and health endpoint."
+          runbook:     "https://github.com/your-org/gigs4you/wiki/runbooks/api-down"
+
+      - alert: AiServiceDown
+        expr: up{job="gigs4you-ai"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          team:     ops
+        annotations:
+          summary:     "Gigs4You AI Service is down"
+          description: "The FastAPI AI service has been unreachable for more than 2 minutes."
+
+  # ── Error Rate ───────────────────────────────────────────────────────────────
+  - name: api_error_rate
+    rules:
+      - alert: HighErrorRate
+        # 5xx rate > 5% of all requests over a 5-minute window
+        expr: |
+          (
+            rate(http_requests_total{job="gigs4you-api", status=~"5.."}[5m])
+            /
+            rate(http_requests_total{job="gigs4you-api"}[5m])
+          ) > 0.05
+        for: 5m
+        labels:
+          severity: critical
+          team:     ops
+        annotations:
+          summary:     "High 5xx error rate on API ({{ $value | humanizePercentage }})"
+          description: "More than 5% of requests are returning 5xx errors. Possible database failure, OOM, or unhandled exception."
+
+      - alert: ElevatedErrorRate
+        # 5xx rate > 1% — warning threshold
+        expr: |
+          (
+            rate(http_requests_total{job="gigs4you-api", status=~"5.."}[5m])
+            /
+            rate(http_requests_total{job="gigs4you-api"}[5m])
+          ) > 0.01
+        for: 10m
+        labels:
+          severity: warning
+          team:     dev
+        annotations:
+          summary:     "Elevated 5xx error rate on API ({{ $value | humanizePercentage }})"
+          description: "More than 1% of requests are returning 5xx errors over the last 10 minutes."
+
+  # ── Latency ──────────────────────────────────────────────────────────────────
+  - name: api_latency
+    rules:
+      - alert: HighP95Latency
+        # p95 response time > 2 seconds
+        expr: |
+          histogram_quantile(0.95,
+            rate(http_request_duration_seconds_bucket{job="gigs4you-api"}[5m])
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+          team:     dev
+        annotations:
+          summary:     "API p95 latency is {{ $value | humanizeDuration }}"
+          description: "95th percentile response time exceeds 2 seconds. Check slow queries, connection pool exhaustion, or external API timeouts."
+
+      - alert: CriticalLatency
+        # p99 > 5 seconds
+        expr: |
+          histogram_quantile(0.99,
+            rate(http_request_duration_seconds_bucket{job="gigs4you-api"}[5m])
+          ) > 5
+        for: 3m
+        labels:
+          severity: critical
+          team:     ops
+        annotations:
+          summary:     "API p99 latency is {{ $value | humanizeDuration }}"
+          description: "99th percentile response time exceeds 5 seconds. Users are experiencing severe degradation."
+
+  # ── Wallet / Payments ────────────────────────────────────────────────────────
+  - name: payments
+    rules:
+      - alert: WithdrawalFailureSpike
+        # More than 3 withdrawal failures in 10 minutes
+        expr: |
+          increase(wallet_withdrawals_total{status="failed"}[10m]) > 3
+        for: 0m
+        labels:
+          severity: critical
+          team:     payments
+        annotations:
+          summary:     "{{ $value }} M-Pesa withdrawal failures in the last 10 minutes"
+          description: "Spike in withdrawal failures. Check M-Pesa API status, Daraja credentials, and B2C callback URL reachability."
+          runbook:     "https://github.com/your-org/gigs4you/wiki/runbooks/mpesa-failures"
+
+      - alert: NoWithdrawalsProcessed
+        # Zero withdrawal attempts in the last hour during business hours (07:00-21:00 EAT)
+        # This catches a silent failure where the endpoint accepts requests but never calls M-Pesa.
+        expr: |
+          (
+            increase(wallet_withdrawals_total[1h]) == 0
+            and
+            (hour() + 3) >= 7 and (hour() + 3) <= 21
+          )
+        for: 0m
+        labels:
+          severity: warning
+          team:     payments
+        annotations:
+          summary:     "No wallet withdrawals processed in the last hour (business hours)"
+          description: "Possible silent failure in the withdrawal pipeline. Verify M-Pesa Daraja connectivity."

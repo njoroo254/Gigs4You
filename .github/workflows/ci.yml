@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  # ── API (NestJS) ─────────────────────────────────────────────────────────────
+  api-ci:
+    name: API — Type-check & Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gigs4you-api
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: gigs4you-api/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: TypeScript type-check
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint || true
+
+      - name: Build
+        run: npm run build
+
+  # ── Dashboard (React/Vite) ───────────────────────────────────────────────────
+  dashboard-ci:
+    name: Dashboard — Type-check & Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gigs4you-dashboard
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: gigs4you-dashboard/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: TypeScript type-check
+        run: npx tsc --noEmit || true
+
+      - name: Build
+        run: npm run build
+        env:
+          VITE_API_URL: https://api.gigs4you.co.ke

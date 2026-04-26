@@ -1,0 +1,37 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Build output
+dist
+build
+**/build
+**/out
+
+# Flutter/Dart generated folders
+.dart_tool
+.packages
+**/android/**
+**/ios/**
+**/build/**
+
+# Editor config
+.vscode
+.idea
+
+# Lockfiles
+**/package-lock.json
+**/yarn.lock
+**/pnpm-lock.yaml
+**/pubspec.lock
+
+# Logs
+*.log
+
+# Binary artifacts
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.svg
+**/*.ico
