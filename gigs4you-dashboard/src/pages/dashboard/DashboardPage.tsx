@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { Users, CheckSquare, Briefcase, TrendingUp,
          AlertTriangle, ArrowRight, Clock, Zap, MapPin,
          CreditCard, Star, RefreshCw, Sparkles } from 'lucide-react'
-// import Card from '../../components/ui/Card'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
          AreaChart, Area, CartesianGrid } from 'recharts'
 import { useAuthStore } from '../../store/store'
@@ -103,7 +102,7 @@ export default function DashboardPage() {
     { label:'Agents in field', value: checkedIn, sub:`of ${totalAgents} total`, icon:Users, color:'var(--green)',  bg:'var(--green-pale)',  link:'/agents' },
     { label:'Tasks today',     value: taskSt.total ?? 0, sub:`${taskSt.completionRate ?? 0}% complete`, icon:CheckSquare, color:'var(--info)',   bg:'var(--info-pale)',   link:'/tasks' },
     { label:'Open jobs',       value: jobSt.open ?? 0, sub:`${jobSt.total ?? 0} total`, icon:Briefcase, color:'var(--purple)', bg:'var(--purple-pale)', link:'/jobs' },
-    { label:'Platform payouts',value: `KES ${Number(walletSt.totalPaidOut || 0).toLocaleString()}`, sub:'all time', icon:CreditCard, color:'var(--accent)', bg:'var(--accent-pale)', link:'/payments' },
+    { label:'Platform payouts',value: `KES ${Number(walletSt.totalPaidOut || 0).toLocaleString()}`, sub:'all time', icon:CreditGCard, color:'var(--accent)', bg:'var(--accent-pale)', link:'/payments' },
   ] : [
     { label:'My tasks', value: taskSt.total ?? 0, sub:`${taskSt.pending ?? 0} pending`, icon:CheckSquare, color:'var(--green)',  bg:'var(--green-pale)',  link:'/tasks' },
     { label:'Completed', value: taskSt.completed ?? 0, sub:`${taskSt.completionRate ?? 0}% rate`, icon:TrendingUp, color:'var(--green)', bg:'var(--green-pale)', link:'/tasks' },
